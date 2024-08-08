@@ -4,6 +4,12 @@
   "private": true,
   "description": "Github Action for mapping variables by a specific key",
   "main": "lib/main.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",

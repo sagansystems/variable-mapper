@@ -1,4 +1,4 @@
-import {ExportFunc} from './exporter'
+import { ExportFunc } from './exporter'
 import Ajv from 'ajv'
 
 class KeyVariablesPair {
@@ -85,7 +85,7 @@ abstract class Mapper {
     type: 'object',
     additionalProperties: {
       type: 'object',
-      additionalProperties: {type: 'string'}
+      additionalProperties: { type: 'string' }
     }
   }
 

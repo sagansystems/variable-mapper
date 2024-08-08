@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
-import {JSONMapper} from './mapper'
-import {getExporters} from './exporter'
+import { JSONMapper } from './mapper'
+import { getExporters } from './exporter'
 
 function run(): void {
   try {

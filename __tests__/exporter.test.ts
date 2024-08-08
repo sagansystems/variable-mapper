@@ -7,7 +7,7 @@ describe('exporter', () => {
   })
 
   it('getExporters can get exporters', () => {
-    let exporters = exporter.getExporters('log,env,output')
+    const exporters = exporter.getExporters('log,env,output')
     expect(exporters.length).toBe(3)
   })
 

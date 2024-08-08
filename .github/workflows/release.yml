@@ -3,7 +3,7 @@ on:
     branches:
       - master
     paths:
-      - "package.json"
+      - 'package.json'
 
 name: Create Release if version is bumped
 jobs:

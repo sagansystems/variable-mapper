@@ -1,4 +1,4 @@
-import {JSONMapper} from '../src/mapper'
+import { JSONMapper } from '../src/mapper'
 
 describe('JSONMapper', () => {
   const mapper = new JSONMapper(

@@ -1,4 +1,4 @@
-name: "unit-test"
+name: 'unit-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
@@ -9,7 +9,7 @@ jobs:
   build_and_test: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - run: |
-        npm install
-        npm run all
+      - uses: actions/checkout@v3
+      - run: |
+          npm install
+          npm run all

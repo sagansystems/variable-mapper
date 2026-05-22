@@ -27,5 +27,5 @@ inputs:
       concatenated literally, so include any separator yourself (e.g. "MYAPP_").
     default: ''
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'

@@ -15,6 +15,18 @@ describe('exporter', () => {
     exporter.exportLog('key', 'value')
     assertWriteCalls([`export key: value${os.EOL}`])
   })
+
+  it('getExporters applies prefix to log exporter', () => {
+    const [logExporter] = exporter.getExporters('log', 'MYAPP_')
+    logExporter('key', 'value')
+    assertWriteCalls([`export MYAPP_key: value${os.EOL}`])
+  })
+
+  it('getExporters omits prefix when empty', () => {
+    const [logExporter] = exporter.getExporters('log', '')
+    logExporter('key', 'value')
+    assertWriteCalls([`export key: value${os.EOL}`])
+  })
 })
 
 // Assert that process.stdout.write calls called only with the given arguments.

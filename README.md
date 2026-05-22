@@ -201,3 +201,32 @@ jobs:
 ```
 
 In this workflow, `env1:value1`, `env2:value2` and `env3:value3` export as env.
+
+### Prefixing exported variable names
+
+Use `variable_prefix` to prepend a string to every exported variable name. This
+is useful for namespacing exports to avoid collisions with variables from other
+steps. The prefix is concatenated literally, so include any separator yourself.
+
+```yaml
+on: [push]
+name: Prefixed exports
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kanga333/variable-mapper@master
+        with:
+          key: 'first'
+          map: |
+            {
+              "first": {
+                "env1": "value1",
+                "env2": "value2"
+              }
+            }
+          export_to: env
+          variable_prefix: 'MYAPP_'
+      - run: echo $MYAPP_env1 $MYAPP_env2
+```
+

@@ -8,6 +8,7 @@ function run(): void {
     const key: string = core.getInput('key')
     const to: string = core.getInput('export_to')
     const mode: string = core.getInput('mode')
+    const prefix: string = core.getInput('variable_prefix')
 
     const params = new JSONMapper(map, mode)
     const matched = params.match(key)
@@ -17,7 +18,7 @@ function run(): void {
     }
     core.info(`${key} matches regular expression ${matched.key}`)
 
-    const exporters = getExporters(to)
+    const exporters = getExporters(to, prefix)
     for (const exporter of exporters) {
       matched.export(exporter)
     }

@@ -1,4 +1,4 @@
-name: 'integration-test'
+name: integration test
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
@@ -9,13 +9,13 @@ jobs:
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - uses: ./
         id: run_action
         with:
-          key: 'keyB'
+          key: "keyB"
           map: |
             {
               "keyA": {
@@ -35,7 +35,7 @@ jobs:
               }
             }
           export_to: log,env,output
-      - name: 'Test Actions Parameters'
+      - name: "Test Actions Parameters"
         run: |
           test "${{env.env1B}}" = "value1B"
           test "${{env.env2B}}" = "value2B"
@@ -46,9 +46,9 @@ jobs:
   test-readme-example1:
     runs-on: ubuntu-latest
     steps:
-      - uses: kanga333/variable-mapper@master
+      - uses: sagansystems/variable-mapper@master
         with:
-          key: '${{github.base_ref}}'
+          key: "${{github.base_ref}}"
           map: |
             {
               "master": {
@@ -72,10 +72,10 @@ jobs:
   test-readme-example2:
     runs-on: ubuntu-latest
     steps:
-      - uses: kanga333/variable-mapper@master
+      - uses: sagansystems/variable-mapper@master
         id: export
         with:
-          key: '${{github.base_ref}}'
+          key: "${{github.base_ref}}"
           map: |
             {
               "master": {
@@ -93,13 +93,13 @@ jobs:
   test-readme-example3:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - uses: ./
         id: export
         with:
-          key: 'first'
+          key: "first"
           map: |
             {
               "first": {
@@ -121,13 +121,13 @@ jobs:
   test-readme-example4:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - uses: ./
         id: export
         with:
-          key: 'first'
+          key: "first"
           map: |
             {
               "first": {
@@ -149,13 +149,13 @@ jobs:
   test-readme-example5:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - uses: ./
         id: export
         with:
-          key: 'first'
+          key: "first"
           map: |
             {
               "first": {

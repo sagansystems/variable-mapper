@@ -14,11 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
       - run: git fetch --prune --unshallow --tags
-      - uses: kanga333/config-value-exporter@main
-        id: version
-        with:
-          key: version
-          file: package.json
+      - id: version
+        name: Read version from package.json
+        run: |
+          version=$(jq -r '.version' package.json)
+          echo "result=${version}" >> "$GITHUB_OUTPUT"
       - id: tag_check
         run: |
           git rev-parse v${{steps.version.outputs.result}} 2> /dev/null \

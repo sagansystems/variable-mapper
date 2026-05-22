@@ -1,18 +1,20 @@
 import * as core from '@actions/core'
 
-export function getExporters(input: string): ExportFunc[] {
+export type ExportFunc = (name: string, val: string) => void
+
+export function getExporters(input: string, prefix = ''): ExportFunc[] {
   const targets = input.split(',')
-  const exporters = new Array<ExportFunc>()
+  const exporters: ExportFunc[] = []
   for (const target of targets) {
     switch (target) {
       case 'log':
-        exporters.push(exportLog)
+        exporters.push(withPrefix(exportLog, prefix))
         break
       case 'env':
-        exporters.push(core.exportVariable)
+        exporters.push(withPrefix(core.exportVariable, prefix))
         break
       case 'output':
-        exporters.push(core.setOutput)
+        exporters.push(withPrefix(core.setOutput, prefix))
         break
       default:
         throw new Error(`Unexpected export type: ${target}`)
@@ -21,8 +23,11 @@ export function getExporters(input: string): ExportFunc[] {
   return exporters
 }
 
-export type ExportFunc = (name: string, val: string) => void
-
 export function exportLog(name: string, val: string): void {
   core.info(`export ${name}: ${val}`)
+}
+
+function withPrefix(fn: ExportFunc, prefix: string): ExportFunc {
+  if (!prefix) return fn
+  return (name, val) => fn(`${prefix}${name}`, val)
 }

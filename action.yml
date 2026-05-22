@@ -20,9 +20,11 @@ inputs:
       Specify the behavior of getting the variable. first_match, overwrite and
       fill are valid values.
     default: 'first_match'
-  variable-prefix:
+  variable_prefix:
     description: |
-      Optional prefix to add to all exported environment variables
+      Optional prefix prepended to every exported variable name (across log,
+      env and output targets). Useful for avoiding collisions. The value is
+      concatenated literally, so include any separator yourself (e.g. "MYAPP_").
     default: ''
 runs:
   using: 'node20'
